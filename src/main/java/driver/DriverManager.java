@@ -35,6 +35,7 @@ public class DriverManager {
     /**
      * Get WebDriver instance
      * @return WebDriver instance
+     * @throws RuntimeException if driver is not initialized
      */
     public WebDriver getDriver() {
         if (driver == null) {

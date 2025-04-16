@@ -23,6 +23,9 @@ public class LoginSteps {
     private LoginPage loginPage;
     private Object currentPage;
 
+    /*
+     * This method is called before each scenario to set up the WebDriver instance.
+     */
     @Before
     public void setUp() {
         logger.info("Setting up test");
@@ -31,6 +34,9 @@ public class LoginSteps {
         DriverManager.getInstance().setDriver(DriverFactory.createDriver(browserType));
     }
 
+    /*
+     * This method is called after each scenario to quit the WebDriver instance.
+     */
     @After
     public void tearDown() {
         logger.info("Tearing down test");

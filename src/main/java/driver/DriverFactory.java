@@ -12,6 +12,12 @@ public class DriverFactory {
     private static final Logger logger = LoggerFactory.getLogger(DriverFactory.class);
     private static final String DRIVER_PATH = "drivers";
 
+    /**
+     * Create WebDriver instance based on the browser type
+     *
+     * @param browserTypeEnum BrowserTypeEnum
+     * @return WebDriver instance
+     */
     public static WebDriver createDriver(BrowserTypeEnum browserTypeEnum) {
         String os = System.getProperty("os.name").toLowerCase();
         String driverExtension = os.contains("win") ? ".exe" : "";
@@ -40,6 +46,11 @@ public class DriverFactory {
         return driver;
     }
 
+    /**
+     * Get browser type from system property
+     *
+     * @return BrowserTypeEnum based on system property
+     */
     public static BrowserTypeEnum getBrowserTypeFromSystemProperty() {
         String browserProperty = System.getProperty("browser", "firefox").toUpperCase();
         try {
