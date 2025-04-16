@@ -5,6 +5,7 @@ import driver.BrowserTypeEnum;
 import driver.DriverFactory;
 import driver.DriverManager;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.slf4j.Logger;
@@ -19,6 +20,18 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class LoginTest {
     private static final Logger logger = LoggerFactory.getLogger(LoginTest.class);
+    private LoginPage loginPage;
+
+    @BeforeEach
+    public void setUp() {
+        logger.info("Setting up test environment");
+        BrowserTypeEnum browserType = DriverFactory.getBrowserTypeFromSystemProperty();
+        logger.info("Using browser: {}", browserType);
+        DriverManager.getInstance().setDriver(DriverFactory.createDriver(browserType));
+
+        loginPage = new LoginPage();
+        loginPage.navigateToLoginPage();
+    }
 
     @AfterEach
     public void tearDown() {
@@ -30,11 +43,6 @@ public class LoginTest {
     @MethodSource("data.TestDataProvider#provideCredentialsForEmptyTest")
     public void testLoginWithEmptyCredentials(String username, String password) {
         logger.info("Running test: UC-1 - Login with empty credentials");
-
-        DriverManager.getInstance().setDriver(DriverFactory.createDriver(BrowserTypeEnum.FIREFOX));
-
-        LoginPage loginPage = new LoginPage();
-        loginPage.navigateToLoginPage();
 
         loginPage.enterUserName(username)
                 .enterPassword(password)
@@ -53,11 +61,6 @@ public class LoginTest {
     public void testLoginWithMissingPassword(String username) {
         logger.info("Running test: UC-2 - Login with empty password");
 
-        DriverManager.getInstance().setDriver(DriverFactory.createDriver(BrowserTypeEnum.FIREFOX));
-
-        LoginPage loginPage = new LoginPage();
-        loginPage.navigateToLoginPage();
-
         loginPage.enterUserName(username)
                 .enterPassword(AppConstants.WRONG_PASSWORD)
                 .clearPassword()
@@ -73,11 +76,6 @@ public class LoginTest {
     @MethodSource("data.TestDataProvider#provideValidCredentials")
     public void testLoginWithValidCredentials(String username, String password) {
         logger.info("Running test: UC-3 - Login with valid credentials should redirect to inventory page");
-
-        DriverManager.getInstance().setDriver(DriverFactory.createDriver(BrowserTypeEnum.FIREFOX));
-
-        LoginPage loginPage = new LoginPage();
-        loginPage.navigateToLoginPage();
 
         Object resultPage = loginPage.login(username, password);
 

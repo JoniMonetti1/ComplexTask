@@ -6,6 +6,7 @@ Feature: SauceDemo Login
   Background:
     Given I am on the SauceDemo login page
 
+    @cucumberTest
     Scenario Outline: UC-1 Login with empty credentials
       When I enter wrong username "<username>"
       And I enter wrong password "<password>"
@@ -19,6 +20,7 @@ Feature: SauceDemo Login
         | wrong_username   | wrong_password   |
 
 
+    @cucumberTest
     Scenario Outline: UC-2 Login with empty password
       When I enter username "<username>"
       And I enter wrong password "<password>"
@@ -30,6 +32,7 @@ Feature: SauceDemo Login
             | username         | password         |
             | standard_user    | wrong_password   |
 
+    @cucumberTest
     Scenario Outline: UC-3 - Login with valid credentials should redirect to inventory page
       When I enter username "<username>"
       And I enter password "<password>"

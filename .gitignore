@@ -39,4 +39,6 @@ build/
 
 
 ### logs ###
-*.log
+logs/*.log
+
+changes.diff

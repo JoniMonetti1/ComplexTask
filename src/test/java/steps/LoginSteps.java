@@ -26,7 +26,9 @@ public class LoginSteps {
     @Before
     public void setUp() {
         logger.info("Setting up test");
-        DriverManager.getInstance().setDriver(DriverFactory.createDriver(BrowserTypeEnum.FIREFOX));
+        BrowserTypeEnum browserType = DriverFactory.getBrowserTypeFromSystemProperty();
+        logger.info("Using browser: {}", browserType);
+        DriverManager.getInstance().setDriver(DriverFactory.createDriver(browserType));
     }
 
     @After

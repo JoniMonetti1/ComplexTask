@@ -2,6 +2,7 @@ package pages;
 
 import driver.DriverManager;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -61,7 +62,7 @@ public class BasePage {
      */
     protected void clearElementByXPath(String xpath) {
         logger.trace("Clearing element by xpath: {}", xpath);
-        findElementByXPath(xpath).clear();
+        findElementByXPath(xpath).sendKeys(Keys.CONTROL + "a", Keys.DELETE);
     }
 
     /**

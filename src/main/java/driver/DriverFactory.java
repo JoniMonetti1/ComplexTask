@@ -6,20 +6,30 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.nio.file.Paths;
+
 public class DriverFactory {
     private static final Logger logger = LoggerFactory.getLogger(DriverFactory.class);
+    private static final String DRIVER_PATH = "drivers";
 
     public static WebDriver createDriver(BrowserTypeEnum browserTypeEnum) {
+        String os = System.getProperty("os.name").toLowerCase();
+        String driverExtension = os.contains("win") ? ".exe" : "";
         WebDriver driver;
 
         switch (browserTypeEnum) {
             case FIREFOX:
+                String geckoDriverPath = Paths.get(DRIVER_PATH, "geckodriver" + driverExtension).toString();
+                System.setProperty("webdriver.gecko.driver", geckoDriverPath);
                 driver = new FirefoxDriver();
                 logger.info("Firefox Driver created");
                 break;
             case EDGE:
+                String edgeDriverPath = Paths.get(DRIVER_PATH, "msedgedriver" + driverExtension).toString();
+                System.setProperty("webdriver.edge.driver", edgeDriverPath);
                 driver = new EdgeDriver();
                 logger.info("Edge Driver created");
+                break;
             default:
                 logger.error("Unsupported browser type: {}", browserTypeEnum);
                 throw new IllegalArgumentException("Unsupported browser type: " + browserTypeEnum);
@@ -28,5 +38,15 @@ public class DriverFactory {
         driver.manage().window().maximize();
         logger.info("WebDriver created for browser: {}", browserTypeEnum);
         return driver;
+    }
+
+    public static BrowserTypeEnum getBrowserTypeFromSystemProperty() {
+        String browserProperty = System.getProperty("browser", "firefox").toUpperCase();
+        try {
+            return BrowserTypeEnum.valueOf(browserProperty);
+        } catch (IllegalArgumentException e) {
+            logger.warn("Invalid browser type: {}. Using FIREFOX as default.", browserProperty);
+            return BrowserTypeEnum.FIREFOX;
+        }
     }
 }
