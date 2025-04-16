@@ -15,6 +15,7 @@ import pages.LoginPage;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.instanceOf;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class LoginTest {
     private static final Logger logger = LoggerFactory.getLogger(LoginTest.class);
@@ -47,9 +48,9 @@ public class LoginTest {
         logger.info("Test empty credentials passed");
     }
 
-    @ParameterizedTest(name = "Login with empty credentials: {0} and {1}")
+    @ParameterizedTest(name = "Login with empty password: {0}")
     @MethodSource("data.TestDataProvider#provideCredentialsForEmptyTest")
-    public void testLoginWithMissingPassword(String username, String password) {
+    public void testLoginWithMissingPassword(String username) {
         logger.info("Running test: UC-2 - Login with empty password");
 
         DriverManager.getInstance().setDriver(DriverFactory.createDriver(BrowserTypeEnum.FIREFOX));
@@ -58,7 +59,7 @@ public class LoginTest {
         loginPage.navigateToLoginPage();
 
         loginPage.enterUserName(username)
-                .enterPassword(password)
+                .enterPassword(AppConstants.WRONG_PASSWORD)
                 .clearPassword()
                 .clickLoginButton();
 
@@ -68,7 +69,7 @@ public class LoginTest {
         logger.info("Test missing password passed");
     }
 
-    @ParameterizedTest(name = "Login with empty credentials: {0} and {1}")
+    @ParameterizedTest(name = "Login with valid credentials: {0} and {1}")
     @MethodSource("data.TestDataProvider#provideValidCredentials")
     public void testLoginWithValidCredentials(String username, String password) {
         logger.info("Running test: UC-3 - Login with valid credentials should redirect to inventory page");
@@ -83,7 +84,7 @@ public class LoginTest {
         assertThat("Page should be instance of InventoryPage", resultPage, instanceOf(InventoryPage.class));
 
         InventoryPage inventoryPage = (InventoryPage) resultPage;
-        String title = inventoryPage.getTitle();
-        assertThat("Inventory page title", title, equalTo(AppConstants.INVENTORY_PAGE_TITLE));
+        boolean inventoryTitleIsValid = inventoryPage.verifyTitle(AppConstants.INVENTORY_PAGE_TITLE);
+        assertTrue(inventoryTitleIsValid, "Inventory page title is not as expected");
     }
 }

@@ -1,0 +1,86 @@
+2025-04-15 21:45:35.393 [main] INFO  tests.LoginTest - Running test: UC-3 - Login with valid credentials should redirect to inventory page
+2025-04-15 21:45:35.397 [main] INFO  driver.DriverManager - DriverManager created
+2025-04-15 21:45:38.455 [main] INFO  driver.DriverFactory - Firefox Driver created
+2025-04-15 21:45:38.764 [main] INFO  driver.DriverFactory - WebDriver created for browser: FIREFOX
+2025-04-15 21:45:38.764 [main] INFO  driver.DriverManager - WebDriver set
+2025-04-15 21:45:38.768 [main] DEBUG pages.LoginPage - initialized BasePage
+2025-04-15 21:45:38.768 [main] INFO  pages.LoginPage - Navigating to Login Page
+2025-04-15 21:45:39.749 [main] INFO  pages.LoginPage - Performing Login with Username: standard_user and Password: secret_sauce
+2025-04-15 21:45:39.856 [main] INFO  pages.LoginPage - Clicking Login Button
+2025-04-15 21:45:47.301 [main] DEBUG pages.LoginPage - Element is NOT present in xpath: //h3[@data-test='error']
+2025-04-15 21:45:47.301 [main] INFO  pages.LoginPage - Login successful
+2025-04-15 21:45:47.302 [main] DEBUG pages.InventoryPage - initialized BasePage
+2025-04-15 21:45:47.305 [main] INFO  pages.InventoryPage - Verifying title: Swag Labs
+2025-04-15 21:45:47.305 [main] INFO  pages.InventoryPage - Getting inventory page title
+2025-04-15 21:45:47.319 [main] INFO  tests.LoginTest - Tearing down test
+2025-04-15 21:45:47.991 [main] INFO  driver.DriverManager - Driver quit
+2025-04-15 21:45:48.000 [main] INFO  tests.LoginTest - Running test: UC-3 - Login with valid credentials should redirect to inventory page
+2025-04-15 21:45:50.439 [main] INFO  driver.DriverFactory - Firefox Driver created
+2025-04-15 21:45:50.700 [main] INFO  driver.DriverFactory - WebDriver created for browser: FIREFOX
+2025-04-15 21:45:50.701 [main] INFO  driver.DriverManager - WebDriver set
+2025-04-15 21:45:50.701 [main] DEBUG pages.LoginPage - initialized BasePage
+2025-04-15 21:45:50.701 [main] INFO  pages.LoginPage - Navigating to Login Page
+2025-04-15 21:45:51.633 [main] INFO  pages.LoginPage - Performing Login with Username: performance_glitch_user and Password: secret_sauce
+2025-04-15 21:45:51.754 [main] INFO  pages.LoginPage - Clicking Login Button
+2025-04-15 21:46:04.184 [main] DEBUG pages.LoginPage - Element is NOT present in xpath: //h3[@data-test='error']
+2025-04-15 21:46:04.184 [main] INFO  pages.LoginPage - Login successful
+2025-04-15 21:46:04.185 [main] DEBUG pages.InventoryPage - initialized BasePage
+2025-04-15 21:46:04.185 [main] INFO  pages.InventoryPage - Verifying title: Swag Labs
+2025-04-15 21:46:04.185 [main] INFO  pages.InventoryPage - Getting inventory page title
+2025-04-15 21:46:04.196 [main] INFO  tests.LoginTest - Tearing down test
+2025-04-15 21:46:04.917 [main] INFO  driver.DriverManager - Driver quit
+2025-04-15 21:46:04.920 [main] INFO  tests.LoginTest - Running test: UC-1 - Login with empty credentials
+2025-04-15 21:46:07.255 [main] INFO  driver.DriverFactory - Firefox Driver created
+2025-04-15 21:46:07.515 [main] INFO  driver.DriverFactory - WebDriver created for browser: FIREFOX
+2025-04-15 21:46:07.515 [main] INFO  driver.DriverManager - WebDriver set
+2025-04-15 21:46:07.515 [main] DEBUG pages.LoginPage - initialized BasePage
+2025-04-15 21:46:07.515 [main] INFO  pages.LoginPage - Navigating to Login Page
+2025-04-15 21:46:08.448 [main] INFO  pages.LoginPage - Entering User Name: wrong_user
+2025-04-15 21:46:08.448 [main] INFO  pages.LoginPage - Clearing User Name
+2025-04-15 21:46:08.533 [main] INFO  pages.LoginPage - Entering Password: wrong_password
+2025-04-15 21:46:08.533 [main] INFO  pages.LoginPage - Clearing Password
+2025-04-15 21:46:08.591 [main] INFO  pages.LoginPage - Clearing User Name
+2025-04-15 21:46:08.605 [main] INFO  pages.LoginPage - Clearing Password
+2025-04-15 21:46:08.618 [main] INFO  pages.LoginPage - Clicking Login Button
+2025-04-15 21:46:08.849 [main] DEBUG pages.LoginPage - Element is present in xpath: //h3[@data-test='error']
+2025-04-15 21:46:08.861 [main] ERROR pages.LoginPage - Login failed with error message: Epic sadface: Username is required
+2025-04-15 21:46:08.861 [main] INFO  pages.LoginPage - Getting Error Message
+2025-04-15 21:46:08.872 [main] INFO  tests.LoginTest - Test empty credentials passed
+2025-04-15 21:46:08.872 [main] INFO  tests.LoginTest - Tearing down test
+2025-04-15 21:46:09.628 [main] INFO  driver.DriverManager - Driver quit
+2025-04-15 21:46:09.630 [main] INFO  tests.LoginTest - Running test: UC-2 - Login with empty password
+2025-04-15 21:46:11.952 [main] INFO  driver.DriverFactory - Firefox Driver created
+2025-04-15 21:46:12.225 [main] INFO  driver.DriverFactory - WebDriver created for browser: FIREFOX
+2025-04-15 21:46:12.225 [main] INFO  driver.DriverManager - WebDriver set
+2025-04-15 21:46:12.226 [main] DEBUG pages.LoginPage - initialized BasePage
+2025-04-15 21:46:12.226 [main] INFO  pages.LoginPage - Navigating to Login Page
+2025-04-15 21:46:13.097 [main] INFO  pages.LoginPage - Entering User Name: wrong_user
+2025-04-15 21:46:13.097 [main] INFO  pages.LoginPage - Clearing User Name
+2025-04-15 21:46:13.184 [main] INFO  pages.LoginPage - Entering Password: wrong_password
+2025-04-15 21:46:13.184 [main] INFO  pages.LoginPage - Clearing Password
+2025-04-15 21:46:13.247 [main] INFO  pages.LoginPage - Clearing Password
+2025-04-15 21:46:13.263 [main] INFO  pages.LoginPage - Clicking Login Button
+2025-04-15 21:46:13.498 [main] DEBUG pages.LoginPage - Element is present in xpath: //h3[@data-test='error']
+2025-04-15 21:46:13.516 [main] ERROR pages.LoginPage - Login failed with error message: Epic sadface: Password is required
+2025-04-15 21:46:13.516 [main] INFO  pages.LoginPage - Getting Error Message
+2025-04-15 21:46:13.530 [main] INFO  tests.LoginTest - Test missing password passed
+2025-04-15 21:46:13.530 [main] INFO  tests.LoginTest - Tearing down test
+2025-04-15 21:46:14.319 [main] INFO  driver.DriverManager - Driver quit
+2025-04-15 21:46:52.374 [main] INFO  steps.LoginSteps - Navigating to SauceDemon login page
+2025-04-15 21:46:52.381 [main] INFO  driver.DriverManager - DriverManager created
+2025-04-15 21:46:52.381 [main] ERROR driver.DriverManager - Driver not initialized
+2025-04-15 21:46:52.401 [main] INFO  steps.LoginSteps - Navigating to SauceDemon login page
+2025-04-15 21:46:52.402 [main] ERROR driver.DriverManager - Driver not initialized
+2025-04-15 21:46:52.408 [main] INFO  steps.LoginSteps - Navigating to SauceDemon login page
+2025-04-15 21:46:52.408 [main] ERROR driver.DriverManager - Driver not initialized
+2025-04-15 21:46:52.415 [main] INFO  steps.LoginSteps - Navigating to SauceDemon login page
+2025-04-15 21:46:52.415 [main] ERROR driver.DriverManager - Driver not initialized
+2025-04-15 22:04:10.748 [main] INFO  steps.LoginSteps - Navigating to SauceDemon login page
+2025-04-15 22:04:10.752 [main] INFO  driver.DriverManager - DriverManager created
+2025-04-15 22:04:10.752 [main] ERROR driver.DriverManager - Driver not initialized
+2025-04-15 22:04:10.771 [main] INFO  steps.LoginSteps - Navigating to SauceDemon login page
+2025-04-15 22:04:10.771 [main] ERROR driver.DriverManager - Driver not initialized
+2025-04-15 22:04:10.778 [main] INFO  steps.LoginSteps - Navigating to SauceDemon login page
+2025-04-15 22:04:10.779 [main] ERROR driver.DriverManager - Driver not initialized
+2025-04-15 22:04:10.786 [main] INFO  steps.LoginSteps - Navigating to SauceDemon login page
+2025-04-15 22:04:10.786 [main] ERROR driver.DriverManager - Driver not initialized

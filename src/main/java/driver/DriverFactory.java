@@ -14,10 +14,12 @@ public class DriverFactory {
 
         switch (browserTypeEnum) {
             case FIREFOX:
+                System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver.exe");
                 driver = new FirefoxDriver();
                 logger.info("Firefox Driver created");
                 break;
             case EDGE:
+                System.setProperty("webdriver.gecko.driver", "src/main/resources/msedgedriver.exe");
                 driver = new EdgeDriver();
                 logger.info("Edge Driver created");
             default:
