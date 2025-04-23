@@ -9,11 +9,15 @@ public class AppConstants {
     public static final String PASSWORD = "secret_sauce";
     public static final String WRONG_PASSWORD = "wrong_password";
 
+    //Driver path
+    public static final String DRIVER_PATH = "drivers";
+
     // Error Messages
     public static final String USERNAME_REQUIRED = "Epic sadface: Username is required";
     public static final String PASSWORD_REQUIRED = "Epic sadface: Password is required";
 
     public static final String INVENTORY_PAGE_TITLE = "Swag Labs";
 
-    private AppConstants() {}
+    private AppConstants() {
+    }
 }

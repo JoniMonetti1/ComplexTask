@@ -77,11 +77,14 @@ public class LoginTest {
     public void testLoginWithValidCredentials(String username, String password) {
         logger.info("Running test: UC-3 - Login with valid credentials should redirect to inventory page");
 
-        Object resultPage = loginPage.login(username, password);
+        loginPage.attemptLogin(username, password);
 
-        assertThat("Page should be instance of InventoryPage", resultPage, instanceOf(InventoryPage.class));
+        assertTrue(loginPage.isLoginSuccessful(), "Login should be successful");
 
-        InventoryPage inventoryPage = (InventoryPage) resultPage;
+        InventoryPage inventoryPage = loginPage.getInventoryPage();
+
+        assertThat("Page should be instance of InventoryPage", inventoryPage, instanceOf(InventoryPage.class));
+
         boolean inventoryTitleIsValid = inventoryPage.verifyTitle(AppConstants.INVENTORY_PAGE_TITLE);
         assertTrue(inventoryTitleIsValid, "Inventory page title is not as expected");
     }

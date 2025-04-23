@@ -1,5 +1,6 @@
 package driver;
 
+import constants.AppConstants;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -10,7 +11,6 @@ import java.nio.file.Paths;
 
 public class DriverFactory {
     private static final Logger logger = LoggerFactory.getLogger(DriverFactory.class);
-    private static final String DRIVER_PATH = "drivers";
 
     /**
      * Create WebDriver instance based on the browser type
@@ -25,13 +25,13 @@ public class DriverFactory {
 
         switch (browserTypeEnum) {
             case FIREFOX:
-                String geckoDriverPath = Paths.get(DRIVER_PATH, "geckodriver" + driverExtension).toString();
+                String geckoDriverPath = Paths.get(AppConstants.DRIVER_PATH, "geckodriver" + driverExtension).toString();
                 System.setProperty("webdriver.gecko.driver", geckoDriverPath);
                 driver = new FirefoxDriver();
                 logger.info("Firefox Driver created");
                 break;
             case EDGE:
-                String edgeDriverPath = Paths.get(DRIVER_PATH, "msedgedriver" + driverExtension).toString();
+                String edgeDriverPath = Paths.get(AppConstants.DRIVER_PATH, "msedgedriver" + driverExtension).toString();
                 System.setProperty("webdriver.edge.driver", edgeDriverPath);
                 driver = new EdgeDriver();
                 logger.info("Edge Driver created");

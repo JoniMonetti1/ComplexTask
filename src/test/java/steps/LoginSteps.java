@@ -3,25 +3,25 @@ package steps;
 import driver.BrowserTypeEnum;
 import driver.DriverFactory;
 import driver.DriverManager;
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
-import pages.InventoryPage;
-import pages.LoginPage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import pages.InventoryPage;
+import pages.LoginPage;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.instanceOf;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 public class LoginSteps {
     private static final Logger logger = LoggerFactory.getLogger(LoginSteps.class);
     private LoginPage loginPage;
-    private Object currentPage;
+    private InventoryPage inventoryPage;
 
     /*
      * This method is called before each scenario to set up the WebDriver instance.
@@ -47,7 +47,7 @@ public class LoginSteps {
     public void i_am_on_the_saucedemon_login_page() {
         logger.info("Navigating to SauceDemon login page");
         loginPage = new LoginPage();
-        currentPage = loginPage.navigateToLoginPage();
+        loginPage.navigateToLoginPage();
     }
 
     @When("I enter username {string}")
@@ -89,28 +89,27 @@ public class LoginSteps {
     @When("I click the login button")
     public void i_click_login_button() {
         logger.info("Clicking login button");
-        currentPage = loginPage.clickLoginButton();
+        loginPage.clickLoginButton();
     }
 
     @Then("I should see the error message {string}")
     public void i_should_see_error_message(String expectedErrorMessage) {
         logger.info("Verifying error message: {}", expectedErrorMessage);
-        assertThat("Current page should be LoginPage", currentPage, instanceOf(LoginPage.class));
-        String actualErrorMessage = ((LoginPage) currentPage).getErrorMessage();
+        String actualErrorMessage = loginPage.getErrorMessage();
         assertThat("Error message should match", actualErrorMessage, equalTo(expectedErrorMessage));
     }
 
     @Then("I should be redirected to the inventory page")
     public void i_should_be_redirected_to_inventory_page() {
         logger.info("Verifying redirection to inventory page");
-        assertThat("Current page should be InventoryPage", currentPage, instanceOf(InventoryPage.class));
+        assertTrue(loginPage.isLoginSuccessful(), "login should be successful");
+        inventoryPage = loginPage.getInventoryPage();
     }
 
     @Then("I should see the title {string}")
     public void i_should_see_the_title(String expectedTitle) {
         logger.info("Verifying title: {}", expectedTitle);
-        assertThat("Current page should be InventoryPage", currentPage, instanceOf(InventoryPage.class));
-        String actualTitle = ((InventoryPage) currentPage).getTitle();
+        String actualTitle = inventoryPage.getTitle();
         assertThat("Title should match", actualTitle, equalTo(expectedTitle));
     }
 }

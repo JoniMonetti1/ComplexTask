@@ -1,10 +1,7 @@
 package pages;
 
 import driver.DriverManager;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -14,9 +11,9 @@ import org.slf4j.LoggerFactory;
 import java.time.Duration;
 
 public class BasePage {
+    protected final Logger logger = LoggerFactory.getLogger(this.getClass());
     protected WebDriver driver;
     protected WebDriverWait wait;
-    protected final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     public BasePage() {
         this.driver = DriverManager.getInstance().getDriver();
@@ -27,6 +24,7 @@ public class BasePage {
 
     /**
      * Find element using xPath
+     *
      * @param xpath expression
      * @return WebElement
      */
@@ -37,6 +35,7 @@ public class BasePage {
 
     /**
      * click element found by xpath
+     *
      * @param xpath expression
      */
     protected void clickElementByXPath(String xpath) {
@@ -46,8 +45,9 @@ public class BasePage {
 
     /**
      * Type text into element found by xpath
+     *
      * @param xpath expression
-     * @param text text to type
+     * @param text  text to type
      */
     protected void typeElementByXPath(String xpath, String text) {
         logger.trace("Typing {} into element by xpath: {}", text, xpath);
@@ -58,6 +58,7 @@ public class BasePage {
 
     /**
      * Clear element found by xpath
+     *
      * @param xpath expression
      */
     protected void clearElementByXPath(String xpath) {
@@ -67,15 +68,16 @@ public class BasePage {
 
     /**
      * Check if an element is present using his xpath
+     *
      * @param xpath expression
      * @return true if element exist else return false.
      */
     protected boolean isElementPresent(String xpath) {
         try {
-            findElementByXPath(xpath);
+            driver.findElement(By.xpath(xpath));
             logger.debug("Element is present in xpath: {}", xpath);
             return true;
-        } catch (Exception e) {
+        } catch (NoSuchElementException e) {
             logger.debug("Element is NOT present in xpath: {}", xpath);
             return false;
         }
