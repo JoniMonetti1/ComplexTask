@@ -13,8 +13,7 @@ import org.slf4j.LoggerFactory;
 import pages.InventoryPage;
 import pages.LoginPage;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
+import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
@@ -32,6 +31,7 @@ public class LoginSteps {
         BrowserTypeEnum browserType = DriverFactory.getBrowserTypeFromSystemProperty();
         logger.info("Using browser: {}", browserType);
         DriverManager.getInstance().setDriver(DriverFactory.createDriver(browserType));
+        loginPage = new LoginPage();
     }
 
     /*
@@ -46,7 +46,6 @@ public class LoginSteps {
     @Given("I am on the SauceDemo login page")
     public void i_am_on_the_saucedemon_login_page() {
         logger.info("Navigating to SauceDemon login page");
-        loginPage = new LoginPage();
         loginPage.navigateToLoginPage();
     }
 
@@ -96,7 +95,7 @@ public class LoginSteps {
     public void i_should_see_error_message(String expectedErrorMessage) {
         logger.info("Verifying error message: {}", expectedErrorMessage);
         String actualErrorMessage = loginPage.getErrorMessage();
-        assertThat("Error message should match", actualErrorMessage, equalTo(expectedErrorMessage));
+        assertEquals("Error message should match", actualErrorMessage, expectedErrorMessage);
     }
 
     @Then("I should be redirected to the inventory page")
@@ -110,6 +109,6 @@ public class LoginSteps {
     public void i_should_see_the_title(String expectedTitle) {
         logger.info("Verifying title: {}", expectedTitle);
         String actualTitle = inventoryPage.getTitle();
-        assertThat("Title should match", actualTitle, equalTo(expectedTitle));
+        assertEquals("Title should match", actualTitle, expectedTitle);
     }
 }
